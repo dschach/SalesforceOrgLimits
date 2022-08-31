@@ -2,4 +2,22 @@
 # More information: https://prettier.io/docs/en/ignore.html
 #
 
+**/staticresources/**
+.localdevserver
 .sfdx
+.sf
+.vscode
+
+coverage/
+manifest/
+config/
+
+# ApexDox
+docs/assets/*.js
+doc-assets/*.js
+
+# Org Metadata
+**/*meta.xml
+
+# GitHub files
+.gitHub/CODEOWNERS

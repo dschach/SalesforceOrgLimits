@@ -1,0 +1,61 @@
+{
+	"name": "salesforce-org-limits",
+	"private": true,
+	"version": "1.0.0",
+	"description": "Salesforce Org Limits",
+	"scripts": {
+		"lint": "npm run lint:lwc && npm run lint:aura",
+		"lint:aura": "eslint **/aura/**",
+		"lint:lwc": "eslint **/lwc/**",
+		"test": "npm run test:unit",
+		"test:unit": "sfdx-lwc-jest",
+		"test:unit:watch": "sfdx-lwc-jest --watch",
+		"test:unit:debug": "sfdx-lwc-jest --debug",
+		"test:unit:coverage": "sfdx-lwc-jest --coverage",
+		"apex:local:start": "node node_modules/prettier-plugin-apex/bin/start-apex-server.js",
+		"apex:local:stop": "node node_modules/prettier-plugin-apex/bin/stop-apex-server.js",
+		"apex:test:local": "rm testresults/* && sfdx force:apex:test:run -l RunLocalTests -d testresults -r human -c",
+		"pmd:scan:csv": "$HOME/pmd/bin/run.sh pmd -d force-app -R pmd/ruleset.xml -f csv -r pmd/pmd.csv --cache .pmdCache --short-names",
+		"pmd:scan:deploy:csv": "$HOME/pmd/bin/run.sh pmd -d force-app -R pmd/deployRules.xml -f csv -r pmd/deploy.csv --cache .pmdCache --short-names",
+		"precommit": "lint-staged",
+		"prettier:apex": "prettier --write \"force-app/**/*.{cls,cmp,component,css,html,js,json,page,trigger}\"",
+		"prettier:lwc": "prettier --write \"force-app/**/lwc/**/*.{css,html,js,json}\"",
+		"prettier:apex:local": "prettier --apex-standalone-parser built-in --write \"force-app/**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,yaml,yml}\"",
+		"prettier:docs": ". doc-assets/docscleanup.sh | prettier --write \"docs/*.html\"",
+		"prettier:verify:apex:local": "prettier --apex-standalone-parser built-in --list-different \"force-app/**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,yaml,yml}\"",
+		"prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+		"prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+		"updateHighlight": ". doc-assets/updateHighlight.sh"
+	},
+	"devDependencies": {
+		"@lwc/eslint-plugin-lwc": "^1.4.0",
+		"@prettier/plugin-xml": "^2.2.0",
+		"@salesforce/eslint-config-lwc": "^3.3.3",
+		"@salesforce/eslint-plugin-aura": "^2.1.0",
+		"@salesforce/eslint-plugin-lightning": "^1.0.0",
+		"@salesforce/sfdx-lwc-jest": "^1.1.2",
+		"eslint": "^8.20.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-jest": "^26.6.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"husky": "^8.0.1",
+		"lint-staged": "^13.0.3",
+		"prettier": "^2.7.1",
+		"prettier-plugin-apex": "^1.10.0"
+	},
+	"lint-staged": {
+		"force-app/**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,yaml,yml}": [
+			"prettier --write"
+		],
+		"force-app/**/{aura,lwc}/**": [
+			"eslint"
+		],
+		"docs/assets/*.css": [
+			"prettier --write"
+		],
+		"docs/*.html": [
+			"prettier --write --tab-width 2"
+		]
+	}
+}
