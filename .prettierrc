@@ -1,13 +1,36 @@
 {
-  "trailingComma": "none",
-  "overrides": [
-    {
-      "files": "**/lwc/**/*.html",
-      "options": { "parser": "lwc" }
-    },
-    {
-      "files": "*.{cmp,page,component}",
-      "options": { "parser": "html" }
-    }
-  ]
+	"trailingComma": "none",
+	"singleQuote": true,
+	"tabWidth": 2,
+	"printWidth": 150,
+	"useTabs": true,
+	"bracketSpacing": true,
+	"apexInsertFinalNewline": false,
+	"bracketSameLine": true,
+	"overrides": [
+		{
+			"files": "**/lwc/**/*.html",
+			"options": { "parser": "lwc" }
+		},
+		{
+			"files": "*.{cmp,page,component}",
+			"options": { "parser": "html" }
+		},
+		{
+			"files": "**/*meta.xml",
+			"options": { "parser": "xml", "useTabs": false }
+		},
+		{
+			"files": "**/*.yml",
+			"options": { "parser": "yaml", "singleQuote": true }
+		},
+		{
+			"files": "**/workflows/*.yml",
+			"options": { "parser": "yaml", "singleQuote": true }
+		},
+		{
+			"files": "*.trigger",
+			"options": { "parser": "apex", "singleQuote": true, "printWidth": 180 }
+		}
+	]
 }
